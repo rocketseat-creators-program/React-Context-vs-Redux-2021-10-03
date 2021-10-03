@@ -1,0 +1,205 @@
+export { default as theme } from "./src"
+import { Head, Image } from "mdx-deck"
+import { Layout, LayoutNoFooter, CodeSanbox, Split, BGImage } from "./src"
+import { CodeSurfer } from "mdx-deck-code-surfer"
+import nightOwl from "prism-react-renderer/themes/nightOwl"
+
+export default Layout
+
+# Redux vs Context
+
+---
+
+export default Layout
+
+# Context - Redux
+
+## Mesma coisa?
+
+---
+
+export default Layout
+
+# Entendendo Context e Redux
+
+---
+
+export default Layout
+
+# O que é React Context
+
+---
+
+export default Split
+
+<img src={require("file-loader!./images/react-context-vs-hoc.png")} />
+
+- +Usando Context
+- +Propósito e casos de uso
+
+---
+
+export default Layout
+
+<CodeSurfer
+  theme={nightOwl}
+  code={`\n
+  function ParentComponent() {
+  const [counter, setCounter] = useState(0)
+  // Create an object containing both the value and the setter
+  const contextValue = {counter, setCounter}
+  return (
+    <MyContext.Provider value={contextValue}>
+      <SomeChildComponent />
+    </MyContext.Provider>
+  )
+}
+`}
+/>
+---
+
+export default Layout
+
+<CodeSurfer
+  theme={nightOwl}
+  code={`\n
+function NestedChildComponent() {
+  const { counter, setCounter } = useContext(MyContext)
+  // do something with the counter value and setter
+}`}
+/>
+
+---
+
+export default Layout
+
+# O que é Redux ?
+
+---
+
+export default Split
+
+<img src={require("file-loader!./images/store.png")} />
+
+- +Redux é UI-agnostic
+- +State management lIb
+
+---
+
+export default Layout
+
+# Managing state !
+
+---
+
+export default LayoutNoFooter
+
+<BGImage src={"https://media.giphy.com/media/xFPPCepF6cMkO4Ie9k/giphy.gif"} />
+
+# How state changes over time !
+
+---
+
+export default Layout
+
+# Context Pode trazer problmeas
+
+## Demo time
+
+---
+
+export default Layout
+
+# Context não faz
+
+## "State Management"
+
+---
+
+export default Layout
+
+# Context + useReducer
+
+## "Não resolve tudo!"
+
+---
+
+export default Layout
+
+<CodeSurfer
+  theme={nightOwl}
+  code={`\n
+\n
+ const reducer = (state, action) => {
+   switch(action.type) {
+     case 'TOGGLE_THEME':
+       const newTheme = state.theme === 'light' ? 'dark' : 'light'
+       return {...state, theme: newTheme}
+     case 'ADD_IDEA':
+       return {...state, ideas: [...state.ideas, action.idea]}
+     case 'REMOVE_IDEA':
+       const filteredIdeas = state.ideas.filter(idea => idea.id !== action.id);
+       return {...state, ideas: filteredIdeas}
+     default:
+       return state
+   }
+ }
+\n
+ function App() {
+   const [state, dispatch] = useReducer(reducer, initalState)
+\n
+   useEffect(() => {
+     document.title = 'Ideabox (state.ideas.length)''
+   })
+\n
+   const toggleTheme = () => {
+     const action = { type: 'TOGGLE_THEME' }
+     dispatch(action)
+   }
+\n
+   return(
+     <AppContext.Provider value={[state, dispatch]}>
+       <main className='App'>
+         <h1>IdeaBox</h1>
+         <button onClick={toggleTheme}>Toggle Theme</button>
+         <Form />
+         <Ideas />
+       </main>
+     </AppContext.Provider>
+   )
+ }
+\n
+ export default App;
+  `}
+/>
+
+---
+
+export default Layout
+
+# Escolhendo qual utilizar
+
+## "the right tool for the right job"
+
+---
+
+export default Layout
+
+# Recap
+
+- Context e Redux são a mesma coisa? NO!
+___
+- O Context é uma ferramenta de "gerenciamento de estado"? NO!
+___
+- Context and useReducer são uma substituição para Redux? NO!
+
+
+---
+
+export default Layout
+
+
+## Quando devo usar o Contexto?
+___
+## Quando devo usar Redux ?
+
